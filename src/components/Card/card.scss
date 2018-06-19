@@ -1,0 +1,26 @@
+.card {
+  width: 99%;
+  margin: 25px 0;
+  box-shadow: 2px 2px 6px grey;
+
+  &--amenities-img {
+    margin: 0 5px;
+  }
+}
+
+.card-img-top {
+  max-height: 350px;
+}
+
+.card-text {
+  img {
+    width: 20px;
+  }
+}
+
+.card-body {
+  text-align: left;
+  img {
+    fill: yellow;
+  }
+}

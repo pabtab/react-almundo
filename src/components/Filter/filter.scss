@@ -1,0 +1,26 @@
+.filter {
+  &--header {
+    background-color: white;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      display: inline-block;
+      margin: 0;
+      color: lightskyblue;
+    }
+
+    &__arrow-down {
+      width: 0;
+      height: 0;
+      border-right: 10px solid transparent;
+      border-top: 10px solid lightskyblue;
+      border-left: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      margin-left: 10px;
+      margin-top: 10px;
+    }
+  }
+}
