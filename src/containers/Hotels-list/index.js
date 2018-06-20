@@ -1,24 +1,56 @@
 import React, { Component } from 'react';
+import MediaQuery from 'react-responsive';
+
+import { getHotelList } from '../../api/index';
 
 import Card from '../../components/Card/index';
-import dataJson from '../../data.json';
+import HotelsListDesktop from './index-desktop';
 
 import './hotel-list.scss';
 
 class HotelsList extends Component {
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      data: []
+    };
+  }
+
+  componentWillMount() {
+    getHotelList().then(res => {
+      this.setState({ data: res.data });
+    })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   render() {
-    console.log(dataJson)
+    let data = this.state.data
     return (
       <div className="hotel-list--body">
-        {
-          dataJson.map((hotelCard, idx) => {
-            return <Card data={hotelCard} key={idx} />
-          })
-        }
+        <MediaQuery minDeviceWidth={1224}>
+          <HotelsListDesktop data={data}>
+            {this.renderCardHotels('desktop')}
+          </HotelsListDesktop>
+        </MediaQuery>
+        <MediaQuery maxDeviceWidth={1224}>
+          {
+            this.renderCardHotels('mobile')
+          }
+        </MediaQuery>
       </div>
     );
   }
+
+  renderCardHotels = (device) => {
+    return this.state.data.map((hotelCard, idx) => {
+      return <Card data={hotelCard} key={idx} device={device} />
+    })
+  }
+
 }
 
 export default HotelsList;
