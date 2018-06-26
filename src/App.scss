@@ -11,6 +11,20 @@ body, html {
   text-align: center;
   background: rgba(128, 128, 128, 0.19);
   height: 100%;
+  &--body {
+    height: 100%;
+    @media only screen and (min-width: 1024px) {
+      display: flex;
+      .filters {
+        width: 20%;
+      }
+    
+      .body {
+        width: 80%;
+      }
+    }
+    
+  }
 }
 
 .App-title {

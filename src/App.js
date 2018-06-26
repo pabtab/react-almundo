@@ -4,6 +4,7 @@ import './App.scss';
 
 import Header from './components/Header/index';
 import Filter from './components/Filter/index';
+import FilterDesktop from './components/Filter/index-desktop';
 import HotelsList from './containers/Hotels-list/index';
 
 class App extends Component {
@@ -11,12 +12,20 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <MediaQuery minDeviceWidth={1020}>
-        </MediaQuery>
-        <MediaQuery maxDeviceWidth={1020}>
-          <Filter />
-        </MediaQuery>
-        <HotelsList />
+        <div className="App--body">
+          <MediaQuery minDeviceWidth={1020}>
+            <aside className="filters">
+              <FilterDesktop />
+            </aside>
+            <section className="body">
+              <HotelsList />
+            </section>
+          </MediaQuery>
+          <MediaQuery maxDeviceWidth={1020}>
+            <Filter />
+            <HotelsList />
+          </MediaQuery>
+        </div>
       </div>
     );
   }

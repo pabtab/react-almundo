@@ -3,7 +3,7 @@ import MediaQuery from 'react-responsive';
 
 import { getHotelList } from '../../api/index';
 
-import Card from '../../components/Card/index';
+import CardHotel from '../../components/CardHotel/index';
 import HotelsListDesktop from './index-desktop';
 
 import './hotel-list.scss';
@@ -47,7 +47,7 @@ class HotelsList extends Component {
 
   renderCardHotels = (device) => {
     return this.state.data.map((hotelCard, idx) => {
-      return <Card data={hotelCard} key={idx} device={device} />
+      return <CardHotel data={hotelCard} key={idx} device={device} />
     })
   }
 

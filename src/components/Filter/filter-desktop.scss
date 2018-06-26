@@ -1,0 +1,66 @@
+.desktop-filter {
+  &--content {
+    .card {
+      display: flex;
+      align-items: center;
+
+      &.filter {
+        flex-direction: column;
+        .content { 
+          &-head {
+            width: 100%;
+
+            &__filter {
+              width: 100%;
+              text-align: left;
+            }
+
+            
+          }
+
+          &-body {
+            &__filter {
+              width: 100%;
+              text-align: left;
+
+              .form-check-input {
+                position: initial;
+                margin: 0 10px;
+
+              }
+            }
+          }
+        }
+
+
+
+        
+      }
+
+      &--title {
+          color: blue;
+          margin-left: 10px;
+      }
+
+      .icon {
+        width: 15px;
+        height: 15px;
+        background-color: blue;
+        display: inline-block;
+        &--filter {
+          -webkit-mask: url('../../icons/filters/search.svg');
+          mask: url('../../icons/filters/search.svg');
+        }
+
+        &--star {
+          -webkit-mask: url('../../icons/filters/star.svg');
+          mask: url('../../icons/filters/star.svg');
+
+          &__yellow {
+            background-color: yellow;
+          }
+        }
+      }
+    }
+  }
+}

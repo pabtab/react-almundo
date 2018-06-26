@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './card.scss';
+import './cardHotel.scss';
 
-class Card extends Component {
+class CardHotel extends Component {
 
   static propTypes = {
     name: PropTypes.string,
@@ -23,7 +23,7 @@ class Card extends Component {
             <h5 className="card-title">{name}</h5>
             <p className="card-text">
               {[...Array(stars)].map(() => {
-                return <img src={require(`../../icons/filters/star.svg`)} alt="star" />
+                return <div className="card--stars"></div>
               })}
             </p>
             <p className="card-text">
@@ -47,4 +47,4 @@ class Card extends Component {
 
 }
 
-export default Card;
+export default CardHotel;

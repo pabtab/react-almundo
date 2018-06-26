@@ -2,6 +2,7 @@
   width: 99%;
   margin: 25px 0;
   box-shadow: 2px 2px 6px grey;
+  padding: 5px;
 
   &-body {
     text-align: left;
@@ -37,13 +38,24 @@
   &-img-top {
     max-height: 350px;
   }
+
+  &--stars {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    -webkit-mask: url('../../icons/filters/star.svg');
+    mask: url('../../icons/filters/star.svg');
+    background-color: rgb(255, 238, 0);
+  }
   
 }
 
 @media only screen and (min-width: 1024px) {
   .card {
     flex-direction: initial;
-
+    display: flex;
+    align-items: center;
+    
     &-img-top {
       max-height: 350px;
       width: 40%;
@@ -63,6 +75,7 @@
       flex-direction: column;
       justify-content: center;
       border-left: dashed 1px;
+      padding: 15px;
     }
   }
 }
