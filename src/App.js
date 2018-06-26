@@ -8,6 +8,29 @@ import FilterDesktop from './components/Filter/index-desktop';
 import HotelsList from './containers/Hotels-list/index';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      searchingValues: {
+        hotelName: '',
+        stars: []
+      }
+    }
+
+    this.getSearchingValues = this.getSearchingValues.bind(this);
+  }
+
+  getSearchingValues(hotelName, stars) {
+    this.setState({
+      searchingValues: {
+        hotelName, 
+        stars
+      }
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -15,10 +38,10 @@ class App extends Component {
         <div className="App--body">
           <MediaQuery minDeviceWidth={1020}>
             <aside className="filters">
-              <FilterDesktop />
+              <FilterDesktop searchValues={this.getSearchingValues}/>
             </aside>
             <section className="body">
-              <HotelsList />
+              <HotelsList searchValues={this.state.searchingValues}/>
             </section>
           </MediaQuery>
           <MediaQuery maxDeviceWidth={1020}>

@@ -16,6 +16,8 @@ class HotelsList extends Component {
     this.state = {
       data: []
     };
+
+    this.searchingFor = this.searchingFor.bind(this)
   }
 
   componentWillMount() {
@@ -27,12 +29,16 @@ class HotelsList extends Component {
       })
   }
 
+  searchingFor(x){
+    return this.props.searchValues ? x.name.toLowerCase().includes(this.props.searchValues.hotelName.toLowerCase()) : null
+  }
+
   render() {
     let data = this.state.data
     return (
       <div className="hotel-list--body">
         <MediaQuery minDeviceWidth={1224}>
-          <HotelsListDesktop data={data}>
+          <HotelsListDesktop data={data.filter(this.searchingFor)}>
             {this.renderCardHotels('desktop')}
           </HotelsListDesktop>
         </MediaQuery>
