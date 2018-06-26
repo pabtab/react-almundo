@@ -6,20 +6,20 @@ class FilterDesktop extends Component {
   render() {
     return (
       <div className="desktop-filter--content">
-        <section className="card title">
+        <section className="card lateral title">
           <p>Filtros</p>
         </section>
-        <section className="card filter">
+        <section className="card lateral filter">
           <div className="content-head__filter">
             <div className="icon icon--filter"></div>
             <span className="card--title">Nombre de hotel</span>
           </div>
           <div className="content-body__filter">
-            <input type="text" className="form-control-plaintext" />
+            <input type="text" className="form-control" placeholder="Ingrese el nombre del hotel"/>
             <button>Aceptar</button>
           </div>
         </section>
-        <section className="card filter stars">
+        <section className="card lateral filter stars">
           <div className="content-head__filter">
             <div className="icon icon--star"></div>
             <span className="card--title">Estrellas</span>

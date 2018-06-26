@@ -1,8 +1,19 @@
 .desktop-filter {
   &--content {
+    margin-left: 10px;
+    margin-top: 25px;
+    
     .card {
       display: flex;
       align-items: center;
+
+      &.title {
+        padding-left: 10px;
+        p {
+          font-weight: 500;
+          margin: 0;
+        }
+      }
 
       &.filter {
         flex-direction: column;
@@ -22,6 +33,14 @@
             &__filter {
               width: 100%;
               text-align: left;
+              margin-top: 10px;
+
+              .form-control {
+                width: 60%;
+                display: inline-block;
+                margin-right: 1rem;
+                height: 100%;
+              }
 
               .form-check-input {
                 position: initial;
@@ -60,6 +79,12 @@
             background-color: yellow;
           }
         }
+      }
+
+
+      &.lateral {
+        margin: 3px;
+        box-shadow: 0px 0px 1px grey;
       }
     }
   }

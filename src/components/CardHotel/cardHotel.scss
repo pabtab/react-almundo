@@ -4,6 +4,10 @@
   box-shadow: 2px 2px 6px grey;
   padding: 5px;
 
+  &-title {
+    color: blue;
+  }
+
   &-body {
     text-align: left;
     padding: 0.6rem;
