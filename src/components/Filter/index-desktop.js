@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import './filter-desktop.scss';
 
-const STARS = [1, 2, 3, 4, 5];
+const STARS = [1, 2, 3, 4, 5]
+
 
 class FilterDesktop extends Component {
 
@@ -10,22 +11,51 @@ class FilterDesktop extends Component {
     super(props);
 
     this.state = {
-      starsFilter: []
+      starsFilter: [],
+      valueSearch: ''
     }
 
-    this.searchHandler = this.searchHandler.bind(this)
+    this.stars = [
+    {
+      1: false
+    }, {
+      2: false
+    }, { 
+      3: false
+    }, { 
+      4: false
+    }, { 
+      5: false
+    }]
+
+    this.handlerChangeSearch = this.handlerChangeSearch.bind(this);
+    this.handleSearchButton = this.handleSearchButton.bind(this);
+    this.handleStarsCheckbox = this.handleStarsCheckbox.bind(this);
 
   }
 
-  searchHandler(evt) {
-    this.props.searchValues(evt.target.value, [])
+  handlerChangeSearch(evt) {
+    this.setState({ valueSearch: evt.target.value});
+  }
+
+  handleSearchButton() {
+    this.props.searchValues(this.state.valueSearch, [])
+  }
+
+  handleStarsCheckbox(evt){
+    if(evt.target.name === 'all') {
+
+    } else {
+      this.stars[evt.target.name][evt.target.value] = evt.target.checked;
+      console.log(this.stars)
+    }
   }
 
   createCheckBox() {
     return STARS.map(elem => {
       return (
         <div>
-          <input type="checkbox" class="form-check-input" value={elem} id="checkbox-star" />
+          <input type="checkbox" class="form-check-input" value={elem} name={elem-1} id="checkbox-star" onChange={this.handleStarsCheckbox} checked={this.stars[0][elem+1]}/>
           <label class="form-check-label" for="checkbox-star">
             {
               this.setNumberStars(elem)
@@ -60,8 +90,9 @@ class FilterDesktop extends Component {
             <input type="text"
               className="form-control"
               placeholder="Ingrese el nombre del hotel"
-              onChange={this.searchHandler} />
-            <button>Aceptar</button>
+              onChange={this.handlerChangeSearch} 
+              value={this.state.valueSearch}/>
+            <button onClick={this.handleSearchButton}>Aceptar</button>
           </div>
         </section>
         <section className="card lateral filter stars">
@@ -71,7 +102,7 @@ class FilterDesktop extends Component {
           </div>
           <div className="content-body__filter">
             <div>
-              <input type="checkbox" class="form-check-input" id="checkbox-star" />
+              <input type="checkbox" class="form-check-input" id="checkbox-star" value="all" onChange={this.handleStarsCheckbox} checked/>
               <label class="form-check-label" for="checkbox-star">
                 Todas las estrellas
             </label>
