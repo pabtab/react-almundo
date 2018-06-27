@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MediaQuery from 'react-responsive';
 
 import { getHotelList } from '../../api/index';
+import PropTypes from 'prop-types';
 
 import CardHotel from '../../components/CardHotel/index';
 import HotelsListDesktop from './index-desktop';
@@ -9,6 +10,13 @@ import HotelsListDesktop from './index-desktop';
 import './hotel-list.scss';
 
 class HotelsList extends Component {
+
+  static proptypes = {
+    searchValues: PropTypes.objectOf(
+      PropTypes.string,
+      PropTypes.array
+    )
+  }
 
   constructor(props) {
     super(props)
@@ -30,13 +38,24 @@ class HotelsList extends Component {
   }
 
   searchingFor(x){
-    return this.props.searchValues ? 
-      x.name.toLowerCase().includes(this.props.searchValues.hotelName.toLowerCase()) || this.props.searchValues.starsFilter.includes(x.stars)
-      : null
+    let { hotelName, stars } = this.props.searchValues;
+
+    if(hotelName && stars) {
+      return x.name.toLowerCase().includes(hotelName.toLowerCase()) && stars.includes(x.stars);
+
+    } else if(hotelName) {
+      return x.name.toLowerCase().includes(hotelName.toLowerCase())
+
+    } else if(stars) {
+      return stars.includes(x.stars)
+    }
+
+    return x;
   }
 
   render() {
     let data = this.state.data.filter(this.searchingFor);
+    console.log(data);
     return (
       <div className="hotel-list--body">
         <MediaQuery minDeviceWidth={1224}>

@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
       searchingValues: {
         hotelName: '',
-        stars: []
+        stars: [1, 2, 3, 4, 5]
       }
     }
 
@@ -23,6 +23,7 @@ class App extends Component {
   }
 
   getSearchingValues(hotelName, stars) {
+    console.log(stars);
     this.setState({
       searchingValues: {
         hotelName, 
