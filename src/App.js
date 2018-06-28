@@ -23,7 +23,6 @@ class App extends Component {
   }
 
   getSearchingValues(hotelName, stars) {
-    console.log(stars);
     this.setState({
       searchingValues: {
         hotelName, 

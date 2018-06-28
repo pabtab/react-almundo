@@ -10,22 +10,24 @@ class FilterDesktop extends Component {
   constructor(props) {
     super(props);
 
+    this.initialStateStars = [
+      {
+        1: false
+      }, {
+        2: false
+      }, { 
+        3: false
+      }, { 
+        4: false
+      }, { 
+        5: false
+      }]
+
     this.state = {
       starsFilter: [],
       valueSearch: '',
       allStarsCheckbox: true,
-      stars:[
-        {
-          1: false
-        }, {
-          2: false
-        }, { 
-          3: false
-        }, { 
-          4: false
-        }, { 
-          5: false
-        }]
+      stars: this.initialStateStars
     }
 
     this.handlerChangeSearch = this.handlerChangeSearch.bind(this);
@@ -44,32 +46,28 @@ class FilterDesktop extends Component {
   }
 
   handleStarsCheckbox(evt){
-    let starsFilter = [];
     if(evt.target.name === 'all') {
-      this.setState({ allStarsCheckbox: true })
-      this.setUncheckedFilter();
-      starsFilter = STARS;
+      this.setState({ allStarsCheckbox: true, stars: [...this.initialStateStars] }, () => this.setFilter(STARS))
+      
+
     } else {
+      let tempArrayStars = [...this.state.stars];
+      tempArrayStars[evt.target.value] = {[evt.target.name]: evt.target.checked};
+
       this.setState({ 
         allStarsCheckbox: false, 
-        stars: [
-          {[evt.target.value+1]: evt.target.checked}
-        ]
+        stars: tempArrayStars
+      }, () => { 
+        this.setFilter(this.getStarsChoosen())
       })
-      //this.stars[evt.target.name][evt.target.value] = evt.target.checked;
-      starsFilter = this.getStarsChoosen()
+      
     }
-    
-    this.setState({ starsFilter: starsFilter}, this.handleSearchButton);
+     
   }
 
-  setUncheckedFilter() {
-    let clearFilter = []
-    clearFilter = this.state.stars.map( (el, id) => {
-      return {[id+1]: false}
-    })
-
-    this.setState({ stars: [...clearFilter]})
+  setFilter(starsFilter) {
+    console.log(this.state.stars)
+    this.setState({ starsFilter: starsFilter}, this.handleSearchButton);
   }
 
   getStarsChoosen() {
@@ -82,10 +80,11 @@ class FilterDesktop extends Component {
   }
 
   createCheckBox() {
-    return STARS.map(elem => {
+    return STARS.map((elem, id) => {
+      console.log('Vuelve')
       return (
         <div>
-          <input type="checkbox" class="form-check-input" value={elem} name={elem-1} id="checkbox-star" onChange={this.handleStarsCheckbox} checked={this.state.stars[0][elem+1]}/>
+          <input type="checkbox" class="form-check-input" value={elem-1} name={elem} id="checkbox-star" onChange={this.handleStarsCheckbox} checked={this.state.stars[id][elem]}/>
           <label class="form-check-label" for="checkbox-star">
             {
               this.setNumberStars(elem)
