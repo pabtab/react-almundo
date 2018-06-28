@@ -55,7 +55,6 @@ class HotelsList extends Component {
 
   render() {
     let data = this.state.data.filter(this.searchingFor);
-    console.log(data);
     return (
       <div className="hotel-list--body">
         <MediaQuery minDeviceWidth={1224}>

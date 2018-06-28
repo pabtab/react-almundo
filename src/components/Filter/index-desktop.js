@@ -66,7 +66,6 @@ class FilterDesktop extends Component {
   }
 
   setFilter(starsFilter) {
-    console.log(this.state.stars)
     this.setState({ starsFilter: starsFilter}, this.handleSearchButton);
   }
 
@@ -81,7 +80,6 @@ class FilterDesktop extends Component {
 
   createCheckBox() {
     return STARS.map((elem, id) => {
-      console.log('Vuelve')
       return (
         <div>
           <input type="checkbox" class="form-check-input" value={elem-1} name={elem} id="checkbox-star" onChange={this.handleStarsCheckbox} checked={this.state.stars[id][elem]}/>
